@@ -19,10 +19,9 @@ plt.rcParams['axes.unicode_minus'] = False # for Chinese -
 
 filename = 'chat_log.txt'
 saints_excel_name = 'saints.xlsx'
-data_str = '2020-\d-\d'
-data_str2 = '2020-\d-\d\d'
 time_str = '\d\d:\d\d'
-plan_date_str = '2020\d\d\d\d'
+data_str = '2020.[0-9]{1,2}.[0-9]{1,2}'
+plan_date_str = '2020.[0-9]{1,2}.[0-9]{1,2}'
 saint_name_list = ['Anna', 'Carol', 'Figo', 'Grace', 'Jerry', 'Leon', 'Linda', 'Mandy', 'Siyuan', 'Sprindy']
 saint_alias_list = ['Anna', 'Carol', 'WOW-LOL', 'GraceXu', 'blue sky', 'Leon', 'linda', 'Mandy', '周森森', 'Sprindy']
 
@@ -53,11 +52,7 @@ def search_and_save_data_to_excel():
             if m is not None:
                 is_real_date_found = True
                 # real_date
-                n = re.search(data_str2, line)
-                if n is not None:
-                    saint_daily_record[0] = n.group()
-                else:
-                    saint_daily_record[0] = m.group()
+                saint_daily_record[0] = m.group()
 
             m = re.search(time_str, line)
             if m is not None:
