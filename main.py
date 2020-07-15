@@ -20,12 +20,11 @@ plt.rcParams['axes.unicode_minus'] = False # for Chinese -
 filename = 'chat_log.txt'
 saints_excel_name = 'saints.xlsx'
 time_str = '\d\d:\d\d'
-data_str = '2020.[0-9]{1,2}.[0-9]{1,2}'
-plan_date_str = '2020.[0-9]{1,2}.[0-9]{1,2}'
+data_str = '2020-[0-9]{1,2}-[0-9]{1,2}'
+plan_date_str = '2020\.*[0-9]{1,2}\.*[0-9]{1,2}'
 saint_name_list = ['Anna', 'Carol', 'Figo', 'Grace', 'Jerry', 'Leon', 'Linda', 'Mandy', 'Siyuan', 'Sprindy']
-saint_alias_list = ['Anna', 'Carol', 'WOW-LOL', 'GraceXu', 'blue sky', 'Leon', 'linda', 'Mandy', '周森森', 'Sprindy']
+saint_alias_list = ['Anna', 'Carol', 'Figo', 'GraceXu', 'blue sky', 'Leon', 'linda', 'Mandy', '周森森', 'Sprindy']
 
-name_lists_by_time = [ [] for i in range(24)]
 header = ['real_date', 'real_time', 'alias', 'plan_date', 'saint', 'real_time_int',
             saint_name_list[0], saint_name_list[1], saint_name_list[2], saint_name_list[3],
             saint_name_list[4], saint_name_list[5], saint_name_list[6], saint_name_list[7],
@@ -47,7 +46,6 @@ def search_and_save_data_to_excel():
         lines = f.readlines()
         line = f.readline()
         for line in lines:
-            #value = [float(s) for s in line.split()]#4
             m = re.search(data_str, line)
             if m is not None:
                 is_real_date_found = True
