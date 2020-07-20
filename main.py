@@ -126,6 +126,11 @@ def plot_inside_excel():
     chat1.title = '2020 One Year Bible Study'
     chat1.x_axis.title = 'Date'
     chat1.y_axis.title = 'Time(o\'clock)'
+    # set major/minor unit and max value of y axis
+    chat1.y_axis.majorUnit = 1
+    chat1.y_axis.minorUnit = 1
+    chat1.y_axis.scaling.max = 24
+    chat1.y_axis.scaling.min = 0
     # enlarge the chart, default is too small
     # width = 15 # in cm, approx 5 rows
     # height = 7.5 # in cm, approx 14 rows
@@ -136,8 +141,8 @@ def plot_inside_excel():
     for i in range(len(saint_name_list)):
         values = Reference(ws, min_col=8+i, min_row=2, max_row=ws.max_row)
         series = Series(values, xvalues, title=saint_name_list[i], title_from_data=False)
-    #  {'triangle', 'dash', 'x', 'auto', 'diamond', 'circle', 'star',
-    #   'picture', 'square', 'dot', 'plus'}
+        #  {'triangle', 'dash', 'x', 'auto', 'diamond', 'circle', 'star',
+        #   'picture', 'square', 'dot', 'plus'}
         series.marker = openpyxl.chart.marker.Marker('circle')
         series.graphicalProperties.line.noFill = True
         chat1.series.append(series)
